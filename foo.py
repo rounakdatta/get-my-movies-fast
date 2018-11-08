@@ -5,6 +5,8 @@ import json
 import base64
 import urllib.parse
 
+from subprocess import call
+
 movie_page = requests.get('https://www.hoichoi.tv/categories')
 home_page = requests.get('https://www.hoichoi.tv/home')
 
@@ -40,4 +42,5 @@ for movie in movie_links:
 	video_url = video_metadata['streamingInfo']['videoAssets']['mpeg'][-1]['url']
 
 	print(movie)
-	print(video_url)
+	
+	call(["wget", video_url])
