@@ -38,9 +38,11 @@ for movie in movie_links:
 	video_metadata = myJson['page']['data']['modules'][0]['contentData'][0]
 	
 	video_id = video_metadata['gist']['id']
-	# get the maximum quality video
+	video_title = video_metadata['gist']['title']
+	filename = video_title + ".mp4"
+	# get the maximum quality video; use index 0 for lowest
 	video_url = video_metadata['streamingInfo']['videoAssets']['mpeg'][-1]['url']
 
-	print(movie)
+	print(video_title)
 	
-	call(["wget", video_url])
+	call(["wget", video_url, "-O", filename])
